@@ -46,8 +46,6 @@ void ATank::SetTurretReference(UTankTurret * TurretToSet)
 
 void ATank::Fire()
 {
-	UE_LOG(LogTemp, Log, TEXT("Fire() called"));
-
 	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeSeconds;
 	
 	if (Barrel && isReloaded && ProjectileBlueprint) { 
@@ -60,6 +58,5 @@ void ATank::Fire()
 
 		Projectile->LaunchProjectile(LaunchSpeed);
 		LastFireTime = FPlatformTime::Seconds();
-		UE_LOG(LogTemp, Log, TEXT("Fire() at %f"), LastFireTime);
 	}
 }
