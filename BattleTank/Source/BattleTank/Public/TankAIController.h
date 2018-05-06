@@ -15,8 +15,13 @@ UCLASS()
 class BATTLETANK_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
-	
+
+public:
+
 private:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+
+	// How close the AI tank gets to the player
+	float AcceptanceRadius = 3000.f;
 };
