@@ -25,11 +25,7 @@ void UTankAimingComponent::Initialise(UTankBarrel * BarrelToSet, UTankTurret * T
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
-	if (!Barrel)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Elephant: NO TANK BARREL"))
-		return;
-	}
+	if (!ensure(Barrel)){return;}
 	FVector LaunchVelocity; // Out param
 	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
 	bool AimSolutionFound = UGameplayStatics::SuggestProjectileVelocity(
@@ -59,7 +55,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
 
-	if (!Barrel || !Turret) { return; }
+	if (!ensure(Barrel && Turret)) { return; }
 
 	// Work out the difference between the current barrel rotation and AimDirection
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
