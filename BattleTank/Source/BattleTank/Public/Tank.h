@@ -7,8 +7,6 @@
 #include "Tank.generated.h"
 
 class UTankBarrel;
-class UTankTurret;
-class UTankAimingComponent;
 class UTankMovementComponent;
 class AProjectile;
 
@@ -22,25 +20,16 @@ public:
 	ATank();
 
 	UPROPERTY(BlueprintReadOnly)
-	UTankAimingComponent* TankAimingComponent = nullptr;
-
-	UPROPERTY(BlueprintReadOnly)
 	UTankMovementComponent* TankMovementComponent = nullptr;
-
 
 protected:
 	virtual void BeginPlay() override;
 	
 public:	
-	void AimAt(FVector HitLocation);
-
 	UFUNCTION(BlueprintCallable, Category = Firing)
 	void Fire();
 
 private:
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
-	float LaunchSpeed = 7500; //TODO find good value
-
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float ReloadTimeSeconds = 3;
 
@@ -50,4 +39,7 @@ private:
 	UTankBarrel* Barrel; //TODO Remove this
 
 	double LastFireTime = 0;
+
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float LaunchSpeed = 7500; //TODO find good value
 };
