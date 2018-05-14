@@ -43,6 +43,9 @@ protected:
 	EFiringState FiringStatus = EFiringState::Aiming;
 
 private:
+	virtual void BeginPlay() override;
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+
 	void MoveBarrelTowards(FVector AimDirection);
 
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
@@ -55,4 +58,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	bool IsBarrelMoving();
+	FVector AimDirection;
 };
