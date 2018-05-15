@@ -12,7 +12,8 @@ enum class EFiringState : uint8
 {
 	Reloading,
 	Aiming,
-	Locked
+	Locked,
+	OutOfAmmo
 };
 
 class UTankBarrel; // Forward Declaration, allows us to use UTankBarrel without including
@@ -38,9 +39,15 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Firing)
 	void Fire();
 
+	EFiringState GetFiringState();
+	int GetAmmo() const;
+
 protected:
 	UPROPERTY(BlueprintReadonly, Category = State)
 	EFiringState FiringStatus = EFiringState::Aiming;
+
+	UPROPERTY(BlueprintReadonly, Category = State)
+	int Ammo = 3;
 
 private:
 	virtual void BeginPlay() override;
