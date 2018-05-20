@@ -40,14 +40,16 @@ public:
 	void Fire();
 
 	EFiringState GetFiringState();
-	int GetAmmo() const;
+
+	UFUNCTION(BlueprintCallable)
+	int32 GetAmmo() const;
 
 protected:
 	UPROPERTY(BlueprintReadonly, Category = State)
 	EFiringState FiringStatus = EFiringState::Aiming;
 
-	UPROPERTY(BlueprintReadonly, Category = State)
-	int Ammo = 3;
+	UPROPERTY(EditDefaultsOnly, Category = State)
+	int32 Ammo = 3;
 
 private:
 	virtual void BeginPlay() override;
