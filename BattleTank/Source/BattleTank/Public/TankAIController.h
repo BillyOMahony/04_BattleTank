@@ -25,5 +25,10 @@ private:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void SetPawn(APawn* InPawn) override;
+
 	UTankAimingComponent* TankAimingComponent;
+
+	UFUNCTION()
+	void OnPossessedTankDeath();
 };

@@ -25,6 +25,11 @@ private:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void SetPawn(APawn* InPawn) override;
+
+	UFUNCTION()
+	void OnPossessedTankDeath();
+
 	// Start the tank moving the barrel to aim towards the crosshair
 	void AimTowardsCrosshair();
 
@@ -45,5 +50,7 @@ private:
 	float LineTraceRange = 100000.f;
 
 	UTankAimingComponent* AimingComponent;
+
+
 
 };
